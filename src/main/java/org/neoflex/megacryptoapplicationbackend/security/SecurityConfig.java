@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
+@Order(value = 1)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -26,6 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private JWTAuthFilter jwtAuthFilter;
 
     private LoginFilter loginFilter;
+
 
 
     public SecurityConfig(@Lazy JWTAuthFilter jwtAuthFilter, @Lazy LoginFilter loginFilter) {
@@ -58,15 +61,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(jwtAuthFilter, BasicAuthenticationFilter.class);
 
         http.authorizeRequests()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .authorizeRequests()
                 .mvcMatchers("**/login")
                 .permitAll()
                 .and()
                 .authorizeRequests()
                 .mvcMatchers("**/register")
                 .permitAll()
+                .and()
+                .authorizeRequests()
+                .anyRequest()
+                .authenticated();
+
+
     }
 }

@@ -40,7 +40,7 @@ public class LoginAuthProvider implements AuthenticationProvider {
             String jwtToken = JWT.create()
                     .withSubject(String.valueOf(authentication.getPrincipal()))
                     .sign(Algorithm.HMAC256(key.getBytes(StandardCharsets.UTF_8)));
-            return new JWTAuthentication(jwtToken);
+            return new JWTAuthentication(jwtToken, user.getUsername());
         } else
             throw new BadCredentialsException("username or password was incorrect");
     }
