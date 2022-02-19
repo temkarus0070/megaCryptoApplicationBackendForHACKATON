@@ -1,6 +1,7 @@
 jwt.singing.key: 86facf09227c3ff644f07b4382dcff76af2bb251698e3feca378df89c3b7ca07
 frontendApp: http://localhost:3000
 spring:
+
   datasource:
     url: jdbc:h2:mem:mydb
     username: sa
@@ -11,18 +12,18 @@ spring:
     topic: "rht.candles"
     bootstrap-servers: "http://pkc-xmzwx.europe-central2.gcp.confluent.cloud:9092"
     properties:
-      spring:
-        json:
-          value:
-            default:
-              type: org.neoflex.megacryptoapplicationbackend.Models.KafkaMessage
+
       security.protocol: "SASL_SSL"
       sasl.mechanism: "PLAIN"
       sasl.jaas.config: "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"7FVY3HRGJCBZUNK2\" password=\"/x38MoYO2bdykrJGPgcCihWfoMqm4V64icBLcPZzYHCVqGvC4BfDWEp5rG1f1C9v\";"
     consumer:
       group-id: "hackathon-team06"
       auto-offset-reset: latest
-      key-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json:
+          trusted.packages: org.neoflex.megacryptoapplicationbackend.Models
+          use.type.headers: false
+          value.default.type: org.neoflex.megacryptoapplicationbackend.Models.KafkaMessage
 server:
   port: 8088

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,8 +22,6 @@ public class CurrencyService {
 
     public List<Currency> list() {
         List<Currency> currencyList = currenciesRepository.findAll();
-        currencyList = new ArrayList<Currency>();
-        currencyList.add(new Currency("bnb", 200));
         return currencyList;
     }
 

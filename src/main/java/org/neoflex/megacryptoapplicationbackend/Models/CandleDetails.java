@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
@@ -13,9 +12,9 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class CandleDetails {
-    private BigDecimal low;
-    private BigDecimal high;
-    private BigDecimal open;
-    private BigDecimal close;
+    private double low;
+    private double high;
+    private double open;
+    private double close;
     private LocalDateTime openTime;
 }
