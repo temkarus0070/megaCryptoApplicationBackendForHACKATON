@@ -6,7 +6,8 @@ create table IF NOT EXISTS users
 
 create table IF NOT EXISTS currencies
 (
-    figi       varchar(128),
-    last_price double
+    figi        varchar(128),
+    last_price  double,
+    update_date timestamp
 );
 

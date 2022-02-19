@@ -29,8 +29,10 @@ public class CurrencyService {
     public void update(Currency currency) {
         Optional<Currency> currencyOptional = currenciesRepository.findById(currency.getFigi());
         if (currencyOptional.isPresent()) {
-            currencyOptional.get().setLastPrice(currency.getLastPrice());
-            currenciesRepository.save(currency);
+            if (currencyOptional.get().getUpdateDate().isBefore(currency.getUpdateDate())) {
+                currencyOptional.get().setLastPrice(currency.getLastPrice());
+                currenciesRepository.save(currency);
+            }
         } else
             currenciesRepository.save(currency);
     }

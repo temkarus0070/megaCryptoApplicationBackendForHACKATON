@@ -18,6 +18,6 @@ public class KafkaListener {
 
     @org.springframework.kafka.annotation.KafkaListener(topics = "${spring.kafka.topic}")
     public void listen(KafkaMessage kafkaMessage) {
-        this.currencyService.update(new Currency(kafkaMessage.getCandle().getFigi(), kafkaMessage.getCandle().getDetails().getClose()));
+        this.currencyService.update(new Currency(kafkaMessage.getCandle().getFigi(), kafkaMessage.getCandle().getDetails().getClose(), kafkaMessage.getCandle().getDetails().getOpenTime()));
     }
 }

@@ -8,6 +8,7 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -20,4 +21,7 @@ public class Currency {
 
     @Column(name = "last_price")
     private double lastPrice;
+
+    @Column(name = "update_date")
+    private LocalDateTime updateDate;
 }
