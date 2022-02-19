@@ -22,6 +22,7 @@ public class JWTAuthFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+
         JWTToken jwtToken = new JWTToken(request.getParameter("Authorization"), key);
         Authentication authenticate = authenticationManager.authenticate(jwtToken);
         SecurityContextHolder.getContext().setAuthentication(authenticate);
@@ -30,6 +31,6 @@ public class JWTAuthFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        return request.getServletPath().equals("/login");
+        return request.getServletPath().equals("/login") || request.getServletPath().equals("/register");
     }
 }
