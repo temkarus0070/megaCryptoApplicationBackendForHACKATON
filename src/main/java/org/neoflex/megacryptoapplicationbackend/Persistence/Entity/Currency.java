@@ -1,4 +1,4 @@
-package org.neoflex.megacryptoapplicationbackend.security.Persistence.Entity;
+package org.neoflex.megacryptoapplicationbackend.Persistence.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

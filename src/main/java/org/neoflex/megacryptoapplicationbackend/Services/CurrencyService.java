@@ -1,12 +1,13 @@
 package org.neoflex.megacryptoapplicationbackend.Services;
 
-import org.neoflex.megacryptoapplicationbackend.security.Persistence.Entity.Currency;
-import org.neoflex.megacryptoapplicationbackend.security.Persistence.Repositories.CurrenciesRepository;
+import org.neoflex.megacryptoapplicationbackend.Persistence.Entity.Currency;
+import org.neoflex.megacryptoapplicationbackend.Persistence.Repository.CurrenciesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,11 +17,15 @@ public class CurrencyService {
 
     @Autowired
     public CurrencyService(CurrenciesRepository currenciesRepository) {
+
         this.currenciesRepository = currenciesRepository;
     }
 
     public List<Currency> list() {
-        return currenciesRepository.findAll();
+        List<Currency> currencyList = currenciesRepository.findAll();
+        currencyList = new ArrayList<Currency>();
+        currencyList.add(new Currency("bnb", 200));
+        return currencyList;
     }
 
     @Transactional(isolation = Isolation.SERIALIZABLE)

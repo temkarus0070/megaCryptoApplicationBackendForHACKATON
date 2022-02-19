@@ -5,6 +5,7 @@ import org.neoflex.megacryptoapplicationbackend.security.Filters.LoginFilter;
 import org.neoflex.megacryptoapplicationbackend.security.Providers.JWTAuthProvider;
 import org.neoflex.megacryptoapplicationbackend.security.Providers.LoginAuthProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -18,6 +19,8 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @Configuration
 @Order(value = 1)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Value("${frontendApp}")
+    private String frontendAddress;
 
     @Autowired
     private JWTAuthProvider jwtAuthProvider;
@@ -28,7 +31,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private JWTAuthFilter jwtAuthFilter;
 
     private LoginFilter loginFilter;
-
 
 
     public SecurityConfig(@Lazy JWTAuthFilter jwtAuthFilter, @Lazy LoginFilter loginFilter) {
@@ -55,7 +57,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.csrf().disable();
+        http.cors().and()
+                .csrf().disable();
+
 
         http.addFilterAt(loginFilter, BasicAuthenticationFilter.class)
                 .addFilterAfter(jwtAuthFilter, BasicAuthenticationFilter.class);
@@ -65,13 +69,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .authorizeRequests()
+                .mvcMatchers("/currencies")
+                .permitAll()
+                .and()
+                .authorizeRequests()
                 .mvcMatchers("/register")
                 .permitAll()
                 .and()
                 .authorizeRequests()
                 .anyRequest()
                 .authenticated();
-
-
     }
+
+
 }

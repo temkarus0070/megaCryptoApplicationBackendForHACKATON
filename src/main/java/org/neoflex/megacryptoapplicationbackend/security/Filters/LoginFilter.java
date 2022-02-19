@@ -35,7 +35,10 @@ public class LoginFilter extends OncePerRequestFilter {
             User userDetails = new ObjectMapper()
                     .readValue(json, org.neoflex.megacryptoapplicationbackend.security.Persistence.Entity.User.class);
             Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword()));
-            response.setHeader("Authentication", String.format("Bearer %s", String.valueOf(auth.getCredentials())));
+            String token = String.format("Bearer %s", String.valueOf(auth.getCredentials()));
+            response.getOutputStream()
+                    .print(String.format("{\"Authorization\": \"%s\"}", token));
+
             response.setHeader("username", auth.getPrincipal().toString());
             filterChain.doFilter(request, response);
 

@@ -1,6 +1,6 @@
-package org.neoflex.megacryptoapplicationbackend.security.Persistence.Repositories;
+package org.neoflex.megacryptoapplicationbackend.Persistence.Repository;
 
-import org.neoflex.megacryptoapplicationbackend.security.Persistence.Entity.Currency;
+import org.neoflex.megacryptoapplicationbackend.Persistence.Entity.Currency;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
