@@ -61,11 +61,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(jwtAuthFilter, BasicAuthenticationFilter.class);
 
         http.authorizeRequests()
-                .mvcMatchers("**/login")
+                .mvcMatchers("/login")
                 .permitAll()
                 .and()
                 .authorizeRequests()
-                .mvcMatchers("**/register")
+                .mvcMatchers("/register")
                 .permitAll()
                 .and()
                 .authorizeRequests()

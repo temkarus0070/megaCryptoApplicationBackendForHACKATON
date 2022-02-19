@@ -32,6 +32,6 @@ public class JWTAuthFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        return request.getServletPath().equals("/login") || request.getServletPath().equals("/register");
+        return request.getHeader("Authorization") == null || request.getServletPath().equals("/register");
     }
 }
