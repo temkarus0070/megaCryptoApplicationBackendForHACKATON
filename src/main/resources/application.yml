@@ -1,5 +1,5 @@
 jwt.singing.key: 86facf09227c3ff644f07b4382dcff76af2bb251698e3feca378df89c3b7ca07
-frontendApp: http://localhost:3000
+frontendApp: ${FRONT_ADDRESS:http://localhost:3000}
 spring:
 
   datasource:
@@ -18,7 +18,7 @@ spring:
       sasl.jaas.config: "org.apache.kafka.common.security.scram.ScramLoginModule required username=\"7FVY3HRGJCBZUNK2\" password=\"/x38MoYO2bdykrJGPgcCihWfoMqm4V64icBLcPZzYHCVqGvC4BfDWEp5rG1f1C9v\";"
     consumer:
       group-id: "hackathon-team06"
-      auto-offset-reset: latest
+      auto-offset-reset: earliest
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json:

@@ -1,13 +1,16 @@
 package org.neoflex.megacryptoapplicationbackend.Models;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
-public abstract class SubscribeRequest {
-    private String currency;
-    private boolean endSubscribe;
+@AllArgsConstructor
+public class NotificationsData {
+    private List<CandleDetailsDTO> candleDetailsList;
 }

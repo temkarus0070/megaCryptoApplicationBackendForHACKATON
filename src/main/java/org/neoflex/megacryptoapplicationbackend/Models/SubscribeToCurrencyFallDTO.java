@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SubscribeToCurrencyFall extends SubscribeRequest {
+public class SubscribeToCurrencyFallDTO extends SubscribeRequestDTO {
     private double currentPrice;
     private double necessaryPercent;
 }

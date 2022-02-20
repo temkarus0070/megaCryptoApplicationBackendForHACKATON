@@ -12,5 +12,5 @@ import lombok.Setter;
 public class CandleDataModel {
     private int interval;
     private String figi;
-    private CandleDetails details;
+    private CandleDetailsDTO details;
 }

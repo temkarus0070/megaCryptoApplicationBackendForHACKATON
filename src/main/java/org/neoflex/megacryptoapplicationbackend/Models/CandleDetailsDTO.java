@@ -11,7 +11,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 @Setter
-public class CandleDetails {
+public class CandleDetailsDTO {
+    private String currency;
     private double low;
     private double high;
     private double open;
